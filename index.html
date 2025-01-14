@@ -3,117 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Step Form</title>
+    <title>Password Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('password generator.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .btn-animate {
+            transition: transform 0.2s ease-in-out;
+        }
+        .btn-animate:hover {
+            transform: scale(1.05) translateY(-3px);
+        }
+        .sparkle-border {
+            border: 4px solid;
+            border-image-source: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1, #ff9a9e);
+            border-image-slice: 1;
+            animation: sparkle-animation 3s linear infinite;
+        }
+
+        @keyframes sparkle-animation {
+            0% {
+                border-image-source: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffdde1);
+            }
+            25% {
+                border-image-source: linear-gradient(45deg, #ffdde1, #ff9a9e, #fad0c4);
+            }
+            50% {
+                border-image-source: linear-gradient(45deg, #fad0c4, #ffdde1, #ff9a9e);
+            }
+            75% {
+                border-image-source: linear-gradient(45deg, #ff9a9e, #ffdde1, #fad0c4);
+            }
+            100% {
+                border-image-source: linear-gradient(45deg, #ffdde1, #ff9a9e, #fad0c4);
+            }
+        }
+    </style>
 </head>
-<body class="bg-cover bg-center min-h-screen flex items-center justify-center" style="background-image: url('background image multiform logo.png');">
-    <div class="form-container bg-white p-8 rounded shadow-lg w-full max-w-lg mt-16">
-        <form id="multiStepForm" class="space-y-6">
- 
-    <!-- Logo in top-right corner -->
-    <div class="absolute top-4 right-4">
-        <img src="./logo.png" alt="Logo" class="h-24 w-24">
-    </div class="mt-12" >
-    <div class="form-container bg-white p-8 rounded shadow-lg w-full max-w-lg mt-12 mb-16 border-4 border-yellow-600">
-        <form id="multiStepForm" class="space-y-6 bg-pink-100 p-6 rounded-lg">
-            <!-- Step 1: Personal Information -->
-            <div class="form-step active border border-pink-600 p-4 rounded-lg">
-                <h2 class="text-2xl font-bold mb-4 text-pink-700">Step 1: Personal Information</h2>
-                <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium text-pink-800">Full Name</label>
-                    <input type="text" id="name" name="name" required class="mt-1 p-2 block w-full border border-pink-400 rounded">
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-pink-800">Email Address</label>
-                    <input type="email" id="email" name="email" required class="mt-1 p-2 block w-full border border-pink-400 rounded">
-                </div>
-                <div class="mb-4">
-                    <label for="phone" class="block text-sm font-medium text-pink-800">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required class="mt-1 p-2 block w-full border border-pink-400 rounded">
-                </div>
-                <button type="button" class="next-btn bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700">Next</button>
-            </div>
+<body class="min-h-screen flex items-center justify-center">
 
-            <!-- Step 2: Coaching Goals -->
-            <div class="form-step hidden border border-pink-600 p-4 rounded-lg">
-                <h2 class="text-2xl font-bold mb-4 text-pink-700">Step 2: Coaching Goals</h2>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-pink-800">Areas to Improve</label>
-                    <div class="flex items-center space-x-4 mt-2">
-                        <div>
-                            <input type="checkbox" id="career" name="goals" value="Career" class="mr-2">
-                            <label for="career">Career</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="relationships" name="goals" value="Relationships" class="mr-2">
-                            <label for="relationships">Relationships</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="confidence" name="goals" value="Confidence" class="mr-2">
-                            <label for="confidence">Confidence</label>
-                        </div>
-                    </div>
+    <div class="max-w-lg w-full mx-auto bg-white p-8 rounded-xl shadow-lg sparkle-border">
+        <div class="flex justify-center mb-6">
+            <img src="./Purrrfect Paswords(1).png" alt="Logo" class="w-36 h-36 rounded-full shadow-lg">
+        </div>
+        <h1 class="text-4xl font-bold text-center text-pink-800 mb-8">Password Generator</h1>
+        <form id="password-form" class="space-y-6">
+            <div>
+                <label for="length" class="block text-lg font-medium text-gray-700">Password Length</label>
+                <input type="number" id="length" name="length" min="8" max="20" value="12"
+                    class="w-full mt-2 p-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500">
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-center">
+                    <input type="checkbox" id="uppercase" name="uppercase" checked class="h-5 w-5 text-pink-600">
+                    <label for="uppercase" class="ml-3 text-lg text-gray-700">Include Uppercase Letters</label>
                 </div>
-                <div class="mb-4">
-                    <label for="mainGoal" class="block text-sm font-medium text-pink-800">Main Personal Development Goal</label>
-                    <textarea id="mainGoal" name="mainGoal" required class="mt-1 p-2 block w-full border border-pink-400 rounded"></textarea>
+                <div class="flex items-center">
+                    <input type="checkbox" id="lowercase" name="lowercase" checked class="h-5 w-5 text-pink-600">
+                    <label for="lowercase" class="ml-3 text-lg text-gray-700">Include Lowercase Letters</label>
                 </div>
-                <div class="flex justify-between">
-                    <button type="button" class="prev-btn bg-gray-500 text-white py-2 px-4 rounded">Previous</button>
-                    <button type="button" class="next-btn bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700">Next</button>
+                <div class="flex items-center">
+                    <input type="checkbox" id="numbers" name="numbers" checked class="h-5 w-5 text-pink-600">
+                    <label for="numbers" class="ml-3 text-lg text-gray-700">Include Numbers</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="symbols" name="symbols" checked class="h-5 w-5 text-pink-600">
+                    <label for="symbols" class="ml-3 text-lg text-gray-700">Include Special Characters</label>
                 </div>
             </div>
-
-            <!-- Step 3: Current Situation -->
-            <div class="form-step hidden border border-pink-600 p-4 rounded-lg">
-                <h2 class="text-2xl font-bold mb-4 text-pink-700">Step 3: Current Situation</h2>
-                <div class="mb-4">
-                    <label for="satisfaction" class="block text-sm font-medium text-pink-800">Rate Your Satisfaction (1-5)</label>
-                    <input type="number" id="satisfaction" name="satisfaction" min="1" max="5" required class="mt-1 p-2 block w-full border border-pink-400 rounded">
-                </div>
-                <div class="flex justify-between">
-                    <button type="button" class="prev-btn bg-gray-500 text-white py-2 px-4 rounded">Previous</button>
-                    <button type="button" class="next-btn bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700">Next</button>
-                </div>
-            </div>
-
-            <!-- Step 4: Preferences -->
-            <div class="form-step hidden border border-pink-600 p-4 rounded-lg">
-                <h2 class="text-2xl font-bold mb-4 text-pink-700">Step 4: Preferences</h2>
-                <div class="mb-4">
-                    <label for="coachingType" class="block text-sm font-medium text-pink-800">Type of Coaching</label>
-                    <select id="coachingType" name="coachingType" class="mt-1 p-2 block w-full border border-pink-400 rounded">
-                        <option value="One-on-One">One-on-One Coaching</option>
-                        <option value="Group">Group Coaching</option>
-                        <option value="Online">Online Coaching</option>
-                    </select>
-                </div>
-                <div class="flex justify-between">
-                    <button type="button" class="prev-btn bg-gray-500 text-white py-2 px-4 rounded">Previous</button>
-                    <button type="button" class="next-btn bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700">Next</button>
-                </div>
-            </div>
-
-            <!-- Step 5: Confirmation -->
-            <div class="form-step hidden border border-pink-600 p-4 rounded-lg">
-                <h2 class="text-2xl font-bold mb-4 text-pink-700">Step 5: Confirmation</h2>
-                <p class="mb-4 text-pink-800">Please review your information before submitting.</p>
-                <div class="flex justify-between">
-                    <button type="button" class="prev-btn bg-gray-500 text-white py-2 px-4 rounded">Previous</button>
-                    <button type="submit" class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700">Submit</button>
-                </div>
-            </div>
+            <button type="submit" 
+                class="w-full bg-gradient-to-r from-pink-700 to-pink-500 text-white py-3 rounded-lg btn-animate shadow-lg hover:from-pink-700 hover:to-pink-500 focus:outline-none">
+                Generate Password
+            </button>
         </form>
+
+        <div class="mt-6">
+            <label class="block text-lg font-medium text-gray-700">Generated Password</label>
+            <input type="text" id="generated-password" readonly
+                class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none">
+        </div>
     </div>
 
-    <!-- Quote Section -->
-    <footer class="mt-12 text-center text-black">
-        <p class="text-sm italic font-light">
-            "Personal development is a journey, not a destination."
-            <br>
-            <span class="font-normal">- Monica Dube-Sekhwela</span>
-        </p>
-    <script src="script.js"></script> 
 </body>
+<script src="script.js"></script>
+
 </html>
